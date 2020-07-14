@@ -5,6 +5,8 @@ from django.db import models
 
 class Tipo_usuario(models.Model):
     nombreTipo = models.CharField(max_length=150)
+    def __str__(self):
+        return self.nombreTipo  
 
 class usuario(models.Model):
     nombresUsuario = models.CharField(max_length=150)
