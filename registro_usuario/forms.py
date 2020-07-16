@@ -11,7 +11,12 @@ class usuariosForm(forms.ModelForm):
             'apellidosUsuario': 'Apellidos', 
             'tipoUsuario': 'Tipo de usuario'
         }
+        widgets = {
+          'duiUsuario': forms.TextInput(attrs={'class': 'form-control'}),
+          'tipoUsuario': forms.Select(attrs={'class': 'form-control'}),
+          'nombresUsuario': forms.TextInput(attrs={'class': 'form-control'}),
+          'apellidosUsuario': forms.TextInput(attrs={'class': 'form-control'})
+        }
 
-    def __init__(self, *args, **kwargs):
-        super(usuariosForm,self).__init__(*args, **kwargs)   
-        self.fields['tipoUsuario'].emptyLabel = "Slect"
+    
+

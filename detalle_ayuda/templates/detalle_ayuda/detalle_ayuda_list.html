@@ -1,0 +1,41 @@
+{% extends "detalle_ayuda/base.html"%}
+
+{% block content %}
+<table class="table table-borderless table-hover ">
+    <thead class="border-bottom font-weight-bold thead-dark">
+        <tr>
+            <td>Ayuda</td>
+            <td>Tipo de ayuda</td>
+            <td>Descripcion</td>
+            <td>Cantidad</td>
+            <td>
+                <a href="{% url 'detalle_ayuda_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Agregar nuevo
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Detalle_ayuda in detalle_ayuda_list%}
+            <tr>
+                <td>{{Detalle_ayuda.ayuda}}</td>
+                <td>{{Detalle_ayuda.tipo_ayuda}}</td>
+                <td>{{Detalle_ayuda.descripcion}}</td>
+                <td>{{Detalle_ayuda.cantidad}}</td>
+                <td>
+                    <a href="{% url 'detalle_ayuda_update' Detalle_ayuda.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'detalle_ayuda_delete' Detalle_ayuda.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
