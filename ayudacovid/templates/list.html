@@ -1,0 +1,36 @@
+{% extends "home.html"%}
+
+{% block content %}
+<table class="table table-borderless table-hover ">
+    <thead class="border-bottom font-weight-bold thead-dark">
+        <tr>
+            <td>Nombre</td>
+            <td>Beneficiario</td>
+            <td>Fecha</td>
+            <td>Entidad</td>
+            <td>Tipo de ayuda</td>
+            <td>Detalle</td>
+            <td>catidad</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ayuda in ayuda_list %}
+            {% for Detalle_ayuda in detalle_ayuda_list %}
+                {% if Detalle_ayuda.ayuda == ayuda %}
+                <tr>
+                    <td>{{ayuda.nombreAyuda}}</td>
+                    <td>{{ayuda.beneficiario}}</td>
+                    <td>{{ayuda.fecha}}</td>
+                    <td>{{ayuda.entidad}}</td>
+                    <td>{{Detalle_ayuda.tipo_ayuda}}</td>
+                    <td>{{Detalle_ayuda.descripcion}}</td>
+                    <td>{{Detalle_ayuda.cantidad}}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+    <a href="{% url 'reporte_excel' %}"> Reporte</a>
+</table>
+
+{% endblock content %}
